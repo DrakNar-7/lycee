@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hijri Calendar & Events</title>
+    <link rel="stylesheet" href="calendar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hijri-js@latest/dist/hijri.min.js"></script>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../salat/salat.html">Salat</a></li>
+            <li><a href="../quran/quran.html">Quran</a></li>
+            <li><a href="../donation/donation.html">Donations</a></li>
+            <li><a href="../tasbih/tasbih.html">Tasbih</a></li>
+            <li><a href="../contact us/contact.html">Contact Us</a></li>
+        </ul>
+</nav>
+
+    <main>
+        <!-- Calendar -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth">‹</button>
+                <h2 id="monthDisplay"></h2>
+                <button id="nextMonth">›</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        <!-- Modal -->
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <h3>Events for <span id="selectedDate"></span></h3>
+                <ul id="eventList"></ul>
+                <hr>
+                <input type="text" id="eventInput" placeholder="Add new task...">
+                <div class="modal-buttons">
+                    <button class="primary" onclick="addEvent()">Add Task</button>
+                    <button class="secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Converter -->
+        <div class="converter-container">
+            <h3>Gregorian → Hijri Converter</h3>
+            <div class="converter-box">
+                <div>
+                    <label>Gregorian Date:</label><br>
+                    <input type="date" id="gregInput" onchange="convertToHijri()">
+                </div>
+                <div class="result-box">
+                    <p>Hijri Date:</p>
+                    <strong id="hijriResult">Select a date</strong>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="calendar.js"></script>
+</body>
+</html>

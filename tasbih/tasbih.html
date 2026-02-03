@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJRR | Tasbih Counter</title>
+    <link rel="stylesheet" href="tasbih.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body class="tasbih-page">
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../salat/salat.html">Salat</a></li>
+            <li><a href="../calendar/calendar.html">Calendar</a></li>
+            <li><a href="../quran/quran.html">Quran</a></li>
+            <li><a href="../tasbih/tasbih.html" class="active">Tasbih</a></li>
+            <li><a href="../contact us/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="tasbih-main">
+        <div class="tasbih-wrapper">
+            <h1 class="page-title">Tasbih</h1>
+            
+            <div class="tasbih-card">
+                <p class="dhikr-label" id="dhikr-text">SubhanAllah</p>
+                <div class="counter-number" id="counter">0</div>
+                
+                <button class="tasbih-circle" id="tap-btn">
+                    <span>TAP</span>
+                </button>
+                
+                <div class="tasbih-controls">
+                    <button class="ctrl-btn" id="reset-btn">Reset</button>
+                    <button class="ctrl-btn" id="change-btn">Switch</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="tasbih.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+/* =====================
+   FONTS & IMPORTS
+===================== */
+/* Importing the exact fonts used in Main Page */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+/* =====================
+   GLOBAL THEME
+===================== */
+:root {
+  /* Copying variables exactly from Main CSS */
+  --bg-dark: hsl(260, 40%, 10%);
+  --text-light: hsl(0, 0%, 98%);
+  --primary: hsl(25, 90%, 65%);
+  --accent: hsl(280, 60%, 40%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* 1. Set the base dark color (Critical for darkness) 
+     2. Apply the exact gradient overlay from the Main Page .hero class
+  */
+  background-color: var(--bg-dark);
+  background-image:
+    radial-gradient(circle at center, rgba(255, 140, 80, 0.2), transparent 60%),
+    linear-gradient(to bottom, rgba(26, 11, 46, 0.8), rgba(26, 11, 46, 1));
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures background covers scrollable areas */
+  background-size: cover;
+}
+
+/* =====================
+   HEADER & NAV
+   (Exact match to Main Page)
+===================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+}
+
+header h1 {
+  /* Matching the Logo text style */
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem; 
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  /* Optional: Gold gradient on text to match AJRR logo vibe */
+  background: linear-gradient(to bottom, white, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* Underline animation (copied from Main Page) */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+   MAIN CONTENT (Prayer Times)
+===================== */
+.prayer-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.prayer-title {
+  /* Using Cinzel font like the AJRR Hero Title */
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 30px;
+  text-align: center;
+  
+  /* Text Gradient similar to Main Page H1 */
+  background: linear-gradient(to bottom, white, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.prayer-times {
+  list-style: none;
+  width: 100%;
+  max-width: 450px;
+  
+  /* Glassmorphism: Semi-transparent dark background to blend with theme */
+  background: rgba(26, 11, 46, 0.4); 
+  backdrop-filter: blur(8px);
+  padding: 40px;
+  border-radius: 2px; /* Sharper edges match Cinzel font better */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.prayer-times li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.prayer-times li:last-child {
+  border-bottom: none;
+}
+
+/* Highlight effect */
+.prayer-times li:hover {
+  color: var(--primary); /* Turns orange/gold on hover */
+  padding-left: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Responsive */
+/* Mobile Responsive Improvements */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 20px;
+  }
+  
+  nav ul {
+    gap: 15px;
+    flex-wrap: wrap; /* Allows links to wrap to a second line if needed */
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 15px;      /* Increased from 12px for readability */
+    letter-spacing: 0.1em; /* Reduced slightly to save space on small screens */
+    padding: 8px 12px;    /* Adds a larger invisible "tap" area around the text */
+    display: inline-block;
+  }
+
+  /* Adjust the prayer list container for smaller screens */
+  .prayer-times {
+    padding: 25px;
+    width: 90%;
+  }
+}

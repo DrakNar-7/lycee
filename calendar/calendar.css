@@ -1,0 +1,433 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Using your specific site colors */
+  background: radial-gradient(circle at top, #1c1433, #0b0815);
+  color: white;
+  font-family: 'Amiri', serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+/* =====================
+   NAV
+===================== */
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background: transparent; /* Let the body gradient show through */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 12px 32px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #f4a261; /* Using your primary gold/orange color */
+}
+/* =====================
+   CALENDAR STYLES
+===================== */
+
+.calendar-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.calendar-header h2 {
+    font-family: 'Tajawal', sans-serif;
+    color: #f4a261;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.calendar-header button {
+    background: rgba(244, 162, 97, 0.1);
+    border: 1px solid #f4a261;
+    color: #f4a261;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.calendar-header button:hover {
+    background: #f4a261;
+    color: #1c1433;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px; /* Increased gap for better circular separation */
+    padding: 10px;
+}
+
+/* Day labels (Sun, Mon, etc) or Date cells */
+.calendar-day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calendar-day:hover {
+    background: rgba(244, 162, 97, 0.2);
+    border-color: #f4a261;
+    transform: translateY(-3px);
+}
+
+.calendar-day.today {
+    background: #f4a261;
+    color: #1c1433;
+    font-weight: bold;
+}
+.event-dot {
+    width: 4px;
+    height: 4px;
+    background: #e07a3f;
+    border-radius: 50%;
+    margin-top: 4px;
+}
+/* Base style for every day */
+.day {
+    aspect-ratio: 1 / 1; /* Ensures a perfect square */
+    width: 100%;
+    max-width: 60px; /* Adjust based on your preference */
+    margin: 0 auto;  /* Centers the circle in the grid cell */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%; /* This creates the circle */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Hover effect stays circular */
+.day:hover {
+    background: rgba(244, 162, 97, 0.2);
+    border-color: #f4a261;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(244, 162, 97, 0.2);
+}
+
+/* Today's Highlight - Circular */
+.day.today {
+    background: #f4a261 !important;
+    color: #1c1433 !important;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(244, 162, 97, 0.5);
+}
+
+.day.today span {
+    color: #1c1433;
+}
+
+/* Adjust the event dot so it doesn't break the circle layout */
+.event-dot {
+    width: 5px;
+    height: 5px;
+    background-color: #f4a261;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 8px; /* Places it inside the bottom of the circle */
+}
+
+.day.today .event-dot {
+    background-color: #1c1433;
+}
+/* =====================
+   MODAL STYLES
+===================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #1c1433;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #f4a261;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: #f4a261;
+}
+
+#eventInput {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+button.primary {
+    background: #f4a261;
+    color: #1c1433;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button.primary:hover {
+    background: #e07a3f;
+}
+button.secondary {
+    background: transparent;
+    color: #f4a261;
+    border: 1px solid #f4a261;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button.secondary:hover {
+    background: #f4a261;
+    color: #1c1433;
+}
+
+/* =====================
+   CONVERTER STYLES
+===================== */
+
+.converter-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border-radius: 20px;
+    text-align: center;
+}
+
+.converter-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#gregInput {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #f4a261;
+    background: #0b0815;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.result-box {
+    padding: 15px 25px;
+    background: rgba(244, 162, 97, 0.1);
+    border-left: 4px solid #f4a261;
+    border-radius: 4px;
+}
+
+#hijriResult {
+    display: block;
+    font-size: 1.2rem;
+    color: #f4a261;
+    margin-top: 5px;
+}
+/* =====================
+   MOBILE RESPONSIVENESS
+===================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Navigation: Wrap links or make them smaller */
+    .nav-links {
+        gap: 15px;
+        padding: 10px 20px;
+    }
+
+    .nav-links a {
+        font-size: 10px; /* Smaller text for mobile */
+        letter-spacing: 0.1em;
+    }
+
+    /* 2. Calendar: Reduce padding and font sizes */
+    .calendar-container {
+        margin: 20px 10px;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .calendar-header button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    /* 3. Grid: Adjust gap and day height */
+    .calendar-grid {
+        gap: 6px; /* Tighter gap for small screens */
+    }
+
+    .calendar-day {
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    /* 4. Modal: Make it fit almost full width */
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+        padding: 20px;
+    }
+
+    /* 5. Converter: Stack inputs vertically */
+    .converter-box {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #gregInput {
+        width: 100%; /* Full width input */
+    }
+
+    .event-dot {
+        width: 3px;
+        height: 3px;
+        margin-top: 3px;
+    }
+}
+/* Extra small screens (Phones under 400px) */
+@media screen and (max-width: 400px) {
+    .calendar-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .nav-links {
+        gap: 10px;
+    }
+    .event-dot {
+        width: 2px;
+        height: 2px;
+        margin-top: 2px;
+    }
+}
+/* =====================
+   MOBILE CIRCULAR FIXES
+===================== */
+
+@media screen and (max-width: 768px) {
+    .calendar-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .calendar-grid {
+        gap: 8px; /* Smaller gap so circles fit side-by-side */
+        padding: 5px;
+    }
+
+    .day {
+        max-width: 45px; /* Smaller circles for mobile */
+        font-size: 0.85rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust the dot position for smaller circles */
+    .event-dot {
+        bottom: 4px;
+        width: 4px;
+        height: 4px;
+    }
+}
+
+/* For very small devices (iPhone SE, etc.) */
+@media screen and (max-width: 380px) {
+    .calendar-grid {
+        gap: 5px;
+    }
+    
+    .day {
+        max-width: 38px; /* Even smaller for tiny screens */
+        font-size: 0.75rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1rem;
+    }
+}
